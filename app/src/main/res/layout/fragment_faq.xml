@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:layout_marginBottom="40dp"
     tools:context=".ui.faq.FAQFragment"
     android:padding="16dp">
 
@@ -135,7 +136,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="30dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:padding="16dp">
@@ -196,7 +196,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="30dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:orientation="horizontal"
@@ -255,7 +254,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="30dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:padding="16dp">
@@ -306,6 +304,7 @@
                 android:orientation="vertical"
                 android:layout_gravity="center"
                 android:gravity="center"
+
                 android:padding="16dp">
 
                 <LinearLayout
@@ -344,5 +343,6 @@
                     tools:ignore="HardcodedText" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -18,6 +18,10 @@
     <color name="light_yellow">#D9FBB1</color>
     <color name="button_color">#F40000</color>
     <color name="transparent">#00000000</color>
+    <color name="orange">#FFA500</color>
+    <color name="green">#17E320</color>
+    <color name="opaque_background">#80000000</color>
+
 
     <color name="yellow">#FFEB3B</color>
 

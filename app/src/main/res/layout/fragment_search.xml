@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.search.ResultActivity">
+    tools:context=".ui.search.ResultActivity"
+    >
 
     <!-- Existing search input container -->
     <LinearLayout
@@ -11,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/rounded_search_background"
@@ -29,8 +30,8 @@
 
         <ImageView
             android:id="@+id/search_icon"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:src="@drawable/search1" />
     </LinearLayout>
     <TextView
@@ -39,10 +40,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/search_container"
         android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
         android:text="OR"
         android:fontFamily="@font/poppins_bold"
         android:textSize="18sp"
- />
+        />
 
     <!-- Container for image upload and preprocess -->
     <RelativeLayout
@@ -50,7 +52,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/search_container"
-        android:layout_marginTop="16dp"
+
+        android:layout_marginTop="56dp"
         android:padding="16dp">
 
         <!-- Rectangle box to contain the image upload and preprocess -->

@@ -1,48 +1,71 @@
 package com.example.birdsspeciesclassification.ui.search
 
+
+import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.fragment.app.Fragment
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.example.birdsspeciesclassification.R
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
+import com.example.birdsspeciesclassification.databinding.ActivityResultBinding
 
-class ResultFragment : Fragment() {
+class ResultActivity : AppCompatActivity() {
 
-    private lateinit var birdImageView: ImageView
-    private lateinit var birdNameTextView: TextView
-    private lateinit var wikiSummaryTextView: TextView
+    private lateinit var binding: ActivityResultBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val root = inflater.inflate(R.layout.activity_result, container, false)
-        birdImageView = root.findViewById(R.id.birdImageView)
-        birdNameTextView = root.findViewById(R.id.birdNameTextView)
-        wikiSummaryTextView = root.findViewById(R.id.wikiSummaryTextView)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityResultBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        // Get data from arguments bundle
-        val birdName = arguments?.getString("bird_name")
-        val wikiSummary = arguments?.getString("wiki_summary")
-        val wikiImageURL = arguments?.getString("wiki_image_url")
+        // Get data from intent extras
+        val birdName = intent.getStringExtra("bird_name")
+        val summary = intent.getStringExtra("summary")
+        val imageUrl = intent.getStringExtra("image_url")
 
-        // Set bird name and wiki summary
-        birdNameTextView.text = birdName
-        wikiSummaryTextView.text = wikiSummary
+        // Set data to views
+        binding.birdNameTextView.text = birdName
+        binding.summaryTextView.text = summary
 
-        // Load and display image using Glide
-        Glide.with(this)
-            .load(wikiImageURL)
-            .into(birdImageView)
-
-        return root
+        // Load image using Glide
+        if (!imageUrl.isNullOrBlank()) {
+            loadImage(imageUrl)
+        } else {
+            // Handle case when image URL is null or empty
+            Log.e("Image Loading", "Image URL is null or empty")
+        }
     }
-}
 
-class ResultActivity {
+    private fun loadImage(imageUrl: String) {
+        Glide.with(this)
+            .load(imageUrl)
+            .listener(object : RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    // Log the error and handle it appropriately
+                    Log.e("Image Loading", "Error loading image: $e")
+                    return false // Return false to allow Glide to call the error placeholder
+                }
 
+                override fun onResourceReady(
+                    resource: Drawable?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    // Log success message if needed
+                    Log.d("Image Loading", "Image loaded successfully")
+                    return false // Return false to allow Glide to handle resource set
+                }
+            })
+            .into(binding.birdImageView)
+    }
 }
