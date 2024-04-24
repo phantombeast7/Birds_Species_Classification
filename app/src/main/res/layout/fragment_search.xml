@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.search.ResultActivity"
+    tools:context="birds.species.birdsspeciesclassification.ui.search.ResultActivity"
     >
 
     <!-- Existing search input container -->
@@ -24,7 +24,7 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:hint="Search"
+            android:hint="@string/search"
             android:padding="10dp"
             tools:ignore="HardcodedText" />
 
@@ -41,7 +41,7 @@
         android:layout_below="@id/search_container"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
-        android:text="OR"
+        android:text="@string/or"
         android:fontFamily="@font/poppins_bold"
         android:textSize="18sp"
         />
@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/image_upload_button"
                 android:layout_marginStart="16dp"
-                android:text="No file chosen"
+                android:text="@string/nofilechosen"
                 android:layout_centerVertical="true" />
 
             <!-- Preprocess button -->
@@ -97,7 +97,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/rounded_search_background"
-                android:text="Submit" />
+                android:text="@string/submit" />
 
         </RelativeLayout>
 

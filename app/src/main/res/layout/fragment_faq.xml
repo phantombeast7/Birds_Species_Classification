@@ -2,11 +2,10 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
     android:layout_marginBottom="40dp"
-    tools:context=".ui.faq.FAQFragment"
+    android:orientation="vertical"
     android:padding="16dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +18,7 @@
             android:id="@+id/faq_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="FAQ"
+            android:text="@string/faq"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:fontFamily="@font/poppins_bold"
-            android:text="Common Questions"
+            android:text="@string/commonquestions"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/faq_title"
@@ -42,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
-            android:text="Here are some of the most common questions that we get."
+            android:text="@string/Herearesomeofthemostcommonquestions"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/common_questions_subtitle"
             android:layout_marginTop="8dp"
@@ -54,8 +53,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="4dp"
             app:layout_constraintTop_toBottomOf="@+id/common_questions_description">
@@ -84,7 +81,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="How does the bird species classification webpage work?"
+                        android:text="@string/firstque"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         tools:ignore="HardcodedText" />
@@ -102,7 +99,7 @@
                     android:id="@+id/answer_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="The app uses advanced machine learning algorithms to analyze the uploaded image and classify it into the corresponding bird species."
+                    android:text="@string/firstans"
                     android:visibility="gone"
                     tools:ignore="HardcodedText" />
 
@@ -116,8 +113,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="4dp"
             app:layout_constraintTop_toBottomOf="@id/question_card">
@@ -145,7 +140,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="What types of image files can be uploaded?"
+                        android:text="@string/secondque"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         tools:ignore="HardcodedText" />
@@ -163,7 +158,7 @@
                     android:id="@+id/answer_text1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="The app accepts commonly used image file formats such as JPEG, PNG, and GIF."
+                    android:text="@string/secondans"
                     android:visibility="gone"
                     tools:ignore="HardcodedText" />
 
@@ -177,8 +172,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="4dp"
             app:layout_constraintTop_toBottomOf="@id/new_card">
@@ -206,7 +199,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Is there a limit on the file size for image uploads?"
+                        android:text="@string/thirdque"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         tools:ignore="HardcodedText" />
@@ -223,7 +216,7 @@
                     android:id="@+id/answer_text2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Yes, the maximum file size for image uploads is 10MB."
+                    android:text="@string/thirdtans"
                     android:visibility="gone" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -234,8 +227,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="4dp"
             app:layout_constraintTop_toBottomOf="@id/new_card2">
@@ -263,7 +254,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Can I upload multiple images at once? "
+                        android:text="@string/fourque"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         tools:ignore="HardcodedText" />
@@ -280,7 +271,7 @@
                     android:id="@+id/answer_text3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="No, currently the app only supports uploading one image at a time"
+                    android:text="@string/fourans"
                     android:visibility="gone"
                     tools:ignore="HardcodedText" />
             </LinearLayout>
@@ -292,9 +283,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             app:cardCornerRadius="20dp"
+            android:layout_marginBottom="10dp"
             app:cardElevation="4dp"
             app:layout_constraintTop_toBottomOf="@id/new_card3">
 
@@ -304,13 +294,13 @@
                 android:orientation="vertical"
                 android:layout_gravity="center"
                 android:gravity="center"
-
                 android:padding="16dp">
 
                 <LinearLayout
                     android:id="@+id/question_container4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:orientation="horizontal"
                     android:clickable="true"
                     android:focusable="true"
@@ -318,10 +308,10 @@
 
                     <TextView
                         android:id="@+id/question_text4"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="How accurate is the bird species classification?"
+                        android:text="@string/fifthque"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         tools:ignore="HardcodedText" />
@@ -338,10 +328,21 @@
                     android:id="@+id/answer_text4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="The classification accuracy depends on various factors such as image quality and similarity between bird species."
+                    android:text="@string/fifthans"
                     android:visibility="gone"
                     tools:ignore="HardcodedText" />
             </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/new_card5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="20dp"
+            android:layout_marginBottom="50dp"
+            app:cardElevation="4dp"
+            app:layout_constraintTop_toBottomOf="@id/new_card4">
+            <!-- Just given to show the last line which was not visible due to some constraint -->
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

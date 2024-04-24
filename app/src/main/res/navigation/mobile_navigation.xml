@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.birdsspeciesclassification.ui.home.HomeFragment"
+        android:name="birds.species.birdsspeciesclassification.ui.home.HomeFragment"
         tools:layout="@layout/fragment_home"
         />
 
     <fragment
         android:id="@+id/navigation_search"
-        android:name="com.example.birdsspeciesclassification.ui.search.SearchFragment"
+        android:name="birds.species.birdsspeciesclassification.ui.search.SearchFragment"
         android:label="@string/title_search"
         tools:layout="@layout/fragment_search" />
 
     <fragment
         android:id="@+id/navigation_faq"
-        android:name="com.example.birdsspeciesclassification.ui.faq.FAQFragment"
+        android:name="birds.species.birdsspeciesclassification.ui.faq.FAQFragment"
         android:label="@string/title_faq"
         tools:layout="@layout/fragment_faq" />
 
     <fragment
         android:id="@+id/navigation_feedback"
-        android:name="com.example.birdsspeciesclassification.ui.feedback.FeedbackFragment"
+        android:name="birds.species.birdsspeciesclassification.ui.feedback.FeedbackFragment"
         android:label="@string/title_feedback"
         tools:layout="@layout/fragment_feedback" />
 

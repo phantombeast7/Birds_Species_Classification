@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_bold"
-            android:text="Give Feedback"
+            android:text="@string/givefeedback"
             android:textSize="20sp"
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
-            android:text="What do you think of our Birds Species Classification app?"
+            android:text="@string/feedbackque"
             tools:ignore="HardcodedText" />
 
         <androidx.cardview.widget.CardView
@@ -87,14 +87,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/poppins_regular"
-            android:text="We would like your thoughts on our app"
+            android:text="@string/rateapp"
             tools:ignore="HardcodedText" />
 
         <EditText
             android:id="@+id/feedbackEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter your feedback here"
+            android:hint="@string/feedback"
             android:lines="4"
             tools:ignore="HardcodedText" />
 
@@ -123,7 +123,7 @@
                 android:layout_toEndOf="@id/image_upload_button"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="No file chosen"
+                android:text="@string/nofilechosen"
                 android:layout_centerVertical="true" />
 
 
@@ -167,7 +167,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
-            android:text="May we follow up with you for the issue you are facing?"
+            android:text="@string/problem"
             tools:ignore="HardcodedText" />
 
         <RadioGroup
@@ -181,13 +181,13 @@
                 android:id="@+id/radioButtonYes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Yes" />
+                android:text="@string/yes" />
 
             <RadioButton
                 android:id="@+id/radioButtonNo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No" />
+                android:text="@string/no" />
 
         </RadioGroup>
 
@@ -197,7 +197,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="10dp"
-            android:text="Submit" />
+            android:text="@string/get" />
 
     </LinearLayout>
 </ScrollView>

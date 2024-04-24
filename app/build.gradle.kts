@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.birdsspeciesclassification"
+    namespace = "birds.species.birdsspeciesclassification"
     compileSdk = 34
 
     buildFeatures {
@@ -13,11 +13,11 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.birdsspeciesclassification"
+        applicationId = "birds.species.birdsspeciesclassification"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 20021
+        versionName = "2.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -68,6 +68,8 @@ dependencies {
     implementation("com.android.volley:volley:1.2.1")
     implementation("com.github.bumptech.glide:glide:4.14.2")
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+
 
 
 
