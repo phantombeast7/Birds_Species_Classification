@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment"
+    tools:context="birds.species.birdsspeciesclassification.ui.home.HomeFragment"
     >
 
     <ScrollView
@@ -19,41 +19,23 @@
             android:padding="16dp">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="360dp"
-                android:layout_height="270dp"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                app:cardCornerRadius="15dp">
 
-                app:cardCornerRadius="25dp">
 
-                <LinearLayout
-                    android:layout_width="360dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:cardCornerRadius="15dp">
 
                     <ImageView
                         android:id="@+id/hero_image"
-                        android:layout_width="360dp"
+                        android:layout_width="match_parent"
                         android:layout_height="220dp"
                         android:scaleType="centerCrop"
                         app:cardCornerRadius="25dp"
-                        android:src="@drawable/hero_bird"
+                        android:src="@drawable/banner1"
                         tools:ignore="ContentDescription" />
 
-                    <TextView
-                        android:id="@+id/textHome"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:fontFamily="@font/nito_segor"
-                        android:gravity="center"
-                        android:text="Birds Species Classification"
-                        android:textSize="22sp"
-                        android:textStyle="bold"
-                        app:cardCornerRadius="15dp"
-                        tools:ignore="HardcodedText" />
-                </LinearLayout>
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -61,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
+                android:layout_marginTop="30dp"
                 app:cardCornerRadius="15dp"
                 >
 
@@ -76,7 +59,7 @@
                         android:layout_gravity="center"
                         android:fontFamily="@font/nito_segor"
                         android:textColor="@color/white"
-                        android:text="DETAILS"
+                        android:text="@string/details"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         tools:ignore="HardcodedText" />
@@ -98,7 +81,7 @@
                         android:fontFamily="@font/regular"
                         android:gravity="center"
                         android:textColor="@color/white"
-                        android:text="Classify bird species accurately using advanced machine learning algorithms. Our professional webpage allows you to upload an image file and instantly receive the name of the bird species."
+                        android:text="@string/detailssummary"
                         tools:ignore="HardcodedText" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -108,14 +91,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="5dp"
                 android:padding="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textColor="#7E5CBA"
-                    android:text="FEATURES"
+                    android:text="@string/features"
                     tools:ignore="HardcodedText"
                     android:textStyle="bold"
                     android:textSize="18sp" />
@@ -124,7 +107,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Key Features"
+                    android:text="@string/keyfeatures"
                     tools:ignore="HardcodedText"
                     android:textSize="16sp"
                     android:layout_marginTop="8dp"/>
@@ -168,7 +151,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Image Upload"
+                                    android:text="@string/imageupload"
                                     android:textStyle="bold"
                                     android:textColor="@color/black"
                                     tools:ignore="HardcodedText" />
@@ -177,7 +160,7 @@
                                     android:layout_height="wrap_content"
                                     tools:ignore="HardcodedText"
                                     android:textColor="@color/black"
-                                    android:text="Upload your bird photos for quick identification."/>
+                                    android:text="@string/imageuploadsummary"/>
                             </LinearLayout>
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -211,7 +194,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Classification"
+                                    android:text="@string/classification"
                                     tools:ignore="HardcodedText"
                                     android:textColor="@color/black"
                                     android:textStyle="bold"
@@ -221,7 +204,7 @@
                                     android:layout_height="match_parent"
                                     tools:ignore="HardcodedText"
                                     android:textColor="@color/black"
-                                    android:text="Get the name of the bird species based on the uploaded image"/>
+                                    android:text="@string/classificationsummary"/>
                             </LinearLayout>
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -259,7 +242,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Accurate Results"
+                                    android:text="@string/accurateresults"
                                     android:textStyle="bold"
                                     android:textColor="@color/black"
                                     tools:ignore="HardcodedText" />
@@ -267,7 +250,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/black"
-                                    android:text="Receive accurate classification results for various bird species"
+                                    android:text="@string/accurateresultssummary"
                                     tools:ignore="HardcodedText" />
                             </LinearLayout>
                         </LinearLayout>
@@ -299,7 +282,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="User-Friendly Interface"
+                                    android:text="@string/userfriendlyinterface"
                                     android:textStyle="bold"
                                     android:textColor="@color/black"
                                     tools:ignore="HardcodedText" />
@@ -307,7 +290,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/black"
-                                    android:text="Easily navigate and use the webpage for bird species classification"
+                                    android:text="@string/userfrindlyinterfacesummary"
                                     tools:ignore="HardcodedText" />
                             </LinearLayout>
                         </LinearLayout>
@@ -323,14 +306,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginBottom="60dp"
-                android:layout_marginTop="0dp"
                 android:padding="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textColor="#7E5CBA"
-                    android:text="Birds Species Gallary"
+                    android:text="@string/birdsspeciesgallary"
                     tools:ignore="HardcodedText"
                     android:textStyle="bold"
                     android:textSize="18sp" />
@@ -339,7 +321,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Exploring the stunning variety of bird species"
+                    android:text="@string/birdsspeciesgallarysummary"
                     tools:ignore="HardcodedText"
                     android:textSize="16sp"
                     android:layout_marginTop="8dp"/>
@@ -384,7 +366,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="American Robin"
+                                        android:text="@string/americanrobin"
                                         android:textStyle="bold"
                                         tools:ignore="HardcodedText" />
 
@@ -392,7 +374,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         tools:ignore="HardcodedText"
-                                        android:text="Scientific Name: Turdus migratorius" />
+                                        android:text="@string/americanrobinsummary" />
                                 </LinearLayout>
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
@@ -426,7 +408,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="House Sparrow"
+                                        android:text="@string/housesparrow"
                                         android:textStyle="bold"
                                         tools:ignore="HardcodedText" />
 
@@ -434,7 +416,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         tools:ignore="HardcodedText"
-                                        android:text="Scientific Name: Passer domesticus" />
+                                        android:text="@string/housesparrowsummary" />
                                 </LinearLayout>
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
@@ -476,7 +458,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="American flamingo"
+                                        android:text="@string/americanflamingo"
                                         android:textStyle="bold"
                                         tools:ignore="HardcodedText" />
 
@@ -518,7 +500,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Indian Roller"
+                                        android:text="@string/indianroller"
                                         android:textStyle="bold"
                                         tools:ignore="HardcodedText" />
 
@@ -541,8 +523,8 @@
                         <androidx.cardview.widget.CardView
                             android:layout_width="0dp"
                             android:layout_height="220dp"
-                            android:layout_margin="10dp"
                             android:layout_weight="1"
+                            android:layout_margin="10dp"
                             app:cardCornerRadius="20dp"
                             app:cardElevation="4dp">
 
@@ -555,8 +537,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="0dp"
                                     android:layout_weight="1"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/bald_eagle" />
+                                    android:src="@drawable/bald_eagle"
+                                    android:scaleType="centerCrop" />
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -567,14 +549,14 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Bald Eagle"
+                                        android:text="@string/baldeagle"
                                         android:textStyle="bold"
                                         tools:ignore="HardcodedText" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="48dp"
-                                        android:text="Scientific Name: Haliaeetus leucocephalus"
+                                        android:text="@string/baldeaglesummary"
                                         tools:ignore="HardcodedText" />
                                 </LinearLayout>
                             </LinearLayout>
@@ -583,8 +565,8 @@
                         <androidx.cardview.widget.CardView
                             android:layout_width="0dp"
                             android:layout_height="220dp"
-                            android:layout_margin="10dp"
                             android:layout_weight="1"
+                            android:layout_margin="10dp"
                             app:cardCornerRadius="20dp"
                             app:cardElevation="4dp">
 
@@ -616,21 +598,24 @@
                                     <TextView
                                         android:layout_width="145dp"
                                         android:layout_height="48dp"
-                                        android:text="Scientific Name: Quiscalus quiscula"
+                                        android:text="@string/commongracklesummary"
                                         tools:ignore="HardcodedText" />
                                 </LinearLayout>
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
 
-
                     </LinearLayout>
-
                 </LinearLayout>
-
-
-
-
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:padding="10dp"
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:rotationX="-16" />
             </LinearLayout>
+
+
 
 
 
