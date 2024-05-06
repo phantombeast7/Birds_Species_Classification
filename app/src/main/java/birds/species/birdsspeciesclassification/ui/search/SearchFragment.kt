@@ -1,6 +1,5 @@
 package birds.species.birdsspeciesclassification.ui.search
 
-
 import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
@@ -12,7 +11,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.OpenableColumns
-import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,8 +26,11 @@ import androidx.lifecycle.lifecycleScope
 import birds.species.birdsspeciesclassification.R
 import birds.species.birdsspeciesclassification.databinding.FragmentSearchBinding
 import com.android.volley.DefaultRetryPolicy
+import com.android.volley.NetworkResponse
 import com.android.volley.Request
 import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.coroutines.Dispatchers
@@ -38,6 +39,7 @@ import kotlinx.coroutines.withContext
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
+import java.io.IOException
 
 class SearchFragment : Fragment() {
 
@@ -54,7 +56,10 @@ class SearchFragment : Fragment() {
     companion object {
         const val CAMERA_PERMISSION_CODE = 100
         const val MY_CUSTOM_TIMEOUT_MS = 10000 // Custom timeout: 10 seconds
+        private val boundary = "apiclient-${System.currentTimeMillis()}"
     }
+
+    data class DataPart(val fileName: String, val data: ByteArray, val type: String)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -81,7 +86,6 @@ class SearchFragment : Fragment() {
                 Toast.makeText(requireContext(), "Please select an image", Toast.LENGTH_SHORT).show()
             }
         }
-
         binding.searchIcon.setOnClickListener {
             val searchText = binding.searchInput.text.toString()
             if (searchText.isNotEmpty()) {
@@ -90,6 +94,7 @@ class SearchFragment : Fragment() {
                 Toast.makeText(requireContext(), "Please enter text to search", Toast.LENGTH_SHORT).show()
             }
         }
+
 
         requestQueue = Volley.newRequestQueue(requireContext())
 
@@ -192,7 +197,6 @@ class SearchFragment : Fragment() {
             fileNameTextView.text = imageName ?: "Image.jpg"
         }
     }
-
     private fun processText(searchText: String) {
         val url = "https://nice-rose-cockroach.cyclic.app/bird_info"
 
@@ -235,85 +239,72 @@ class SearchFragment : Fragment() {
     }
 
     private fun processImage(bitmap: Bitmap) {
-        // 1. Show the loading dialog immediately
-        val progressDialog = ProgressDialog(requireContext())
-        progressDialog.setMessage("Loading...")
-        progressDialog.setCancelable(false)
-        progressDialog.show()
+        val progressDialog = ProgressDialog(requireContext()).apply {
+            setMessage("Uploading image...")
+            setCancelable(false)
+            show()
+        }
 
-        lifecycleScope.launch(Dispatchers.IO) { // 2. Perform work on background thread
-
+        lifecycleScope.launch(Dispatchers.IO) {
             try {
-                // 3. Image compression
-                val compressionQuality = 80
-                val byteArrayOutputStream = ByteArrayOutputStream()
-                bitmap.compress(Bitmap.CompressFormat.JPEG, compressionQuality, byteArrayOutputStream)
-                val byteArray = byteArrayOutputStream.toByteArray()
+                // Convert bitmap to byte array
+                val outputStream = ByteArrayOutputStream()
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+                val imageByteArray = outputStream.toByteArray()
 
-                // 4. Base64 encoding
-                val encodedImage = Base64.encodeToString(byteArray, Base64.DEFAULT)
-
-                // 5. API Call (Using your existing code structure)
-                val url = "https://nice-rose-cockroach.cyclic.app/bird_info"
-                val jsonObject = JSONObject().apply {
-                    put("image", encodedImage)
+                // Create a multipart request to upload the file
+                val multipartRequest = object : VolleyMultipartRequest(
+                    Method.POST,
+                    "https://birdsapiv3.azurewebsites.net/upload",
+                    Response.Listener { response ->
+                        progressDialog.dismiss()
+                        handleResponse(response)
+                    },
+                    Response.ErrorListener { error ->
+                        progressDialog.dismiss()
+                        Toast.makeText(requireContext(), "Upload error: ${error.message}", Toast.LENGTH_SHORT).show()
+                    }
+                ) {
+                    override fun getByteData(): Map<String, DataPart> {
+                        val params = HashMap<String, DataPart>()
+                        // Add the file to the request
+                        params["image"] = DataPart("upload_image.jpg", imageByteArray, "image/jpeg")
+                        return params
+                    }
                 }
 
-                val request = JsonObjectRequest(
-                    Request.Method.POST, url, jsonObject,
-                    { response ->
-                        progressDialog.dismiss()
-                        if (response != null) {
-                            try {
-                                val birdName = response.optString("bird_name")
-                                val summary = response.optString("summary")
-                                val imageUrl = response.optString("image_url")
-                                if (birdName.isNotEmpty() && summary.isNotEmpty() && imageUrl.isNotEmpty()) {
-                                    startResultActivity(birdName, summary, imageUrl)
-                                } else {
-                                    Toast.makeText(requireContext(), "Incomplete response received", Toast.LENGTH_SHORT).show()
-                                }
-                            } catch (e: JSONException) {
-                                Toast.makeText(requireContext(), "Error processing server response", Toast.LENGTH_SHORT).show()
-                                e.printStackTrace()
-                            }
-                        } else {
-                            Toast.makeText(requireContext(), "Empty response received", Toast.LENGTH_SHORT).show()
-                        }
-                    },
-                    { error ->
-                        progressDialog.dismiss()
-                        val errorMessage = "Error processing image: ${error.message}"
-                        Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
-                        error.printStackTrace()
-                    }
-                )
-
-                // Set custom retry policy with the desired timeout
-                request.retryPolicy = DefaultRetryPolicy(
+                // Set custom retry policy if needed
+                multipartRequest.retryPolicy = DefaultRetryPolicy(
                     MY_CUSTOM_TIMEOUT_MS,
                     DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                     DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
                 )
 
                 // Add the request to the request queue
-                requestQueue.add(request)
+                requestQueue.add(multipartRequest)
 
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
                     progressDialog.dismiss()
                     Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
-            } finally {
-                // Ensure progressDialog is dismissed, even on network error
-                withContext(Dispatchers.Main) {
-                    progressDialog.dismiss()
-                }
             }
         }
     }
 
-
+    private fun handleResponse(response: NetworkResponse) {
+        try {
+            val responseData = String(response.data)
+            val jsonObject = JSONObject(responseData)
+            val birdName = jsonObject.getString("predicted_species")
+            val summary = jsonObject.getString("summary")
+            val imageUrl = jsonObject.getString("image_url")
+            startResultActivity(birdName, summary, imageUrl)
+        } catch (e: JSONException) {
+            Toast.makeText(requireContext(), "Error parsing response", Toast.LENGTH_SHORT).show()
+            e.printStackTrace()
+        }
+    }
 
 
 
@@ -334,5 +325,46 @@ class SearchFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    abstract inner class VolleyMultipartRequest(
+        method: Int,
+        url: String,
+        private val listener: Response.Listener<NetworkResponse>,
+        errorListener: Response.ErrorListener
+    ) : Request<NetworkResponse>(method, url, errorListener) {
+
+        override fun getBodyContentType(): String {
+            return "multipart/form-data;boundary=$boundary"
+        }
+
+        override fun parseNetworkResponse(response: NetworkResponse?): Response<NetworkResponse> {
+            return Response.success(response, HttpHeaderParser.parseCacheHeaders(response))
+        }
+
+        override fun deliverResponse(response: NetworkResponse) {
+            listener.onResponse(response)
+        }
+
+        abstract fun getByteData(): Map<String, DataPart>
+
+        override fun getBody(): ByteArray {
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            try {
+                val params = getByteData()
+                params.entries.forEach { entry ->
+                    val dataPart = entry.value
+                    byteArrayOutputStream.write(("--$boundary\r\n").toByteArray())
+                    byteArrayOutputStream.write("Content-Disposition: form-data; name=\"${entry.key}\"; filename=\"${dataPart.fileName}\"\r\n".toByteArray())
+                    byteArrayOutputStream.write("Content-Type: ${dataPart.type}\r\n\r\n".toByteArray())
+                    byteArrayOutputStream.write(dataPart.data)
+                    byteArrayOutputStream.write("\r\n".toByteArray())
+                }
+                byteArrayOutputStream.write(("--$boundary--\r\n").toByteArray())
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+            return byteArrayOutputStream.toByteArray()
+        }
     }
 }
